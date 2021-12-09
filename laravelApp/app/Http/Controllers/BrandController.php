@@ -14,7 +14,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        $brands=Brand::all();
+        return $brands;
     }
 
     /**
@@ -24,7 +25,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        Brand::factory()->create();
     }
 
     /**
@@ -35,7 +36,7 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -44,9 +45,13 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function show(Brand $brand)
+    public function show($brand_id)
     {
-        //
+        $brand=Brand::find($brand_id);
+        if(is_null($brand)){
+            return response()->json('Data not found',404);
+        }
+        return response()->json($brand);
     }
 
     /**

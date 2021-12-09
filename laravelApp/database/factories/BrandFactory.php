@@ -14,7 +14,10 @@ class BrandFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name'=>$this->faker->name(),
+         'slug'=>$this->faker->slug(),
+         'category_id'=>Category::all()->random()->id,
+        
         ];
     }
 }

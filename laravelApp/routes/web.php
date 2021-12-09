@@ -23,3 +23,8 @@ Route::get('/users/{id}', [UserController::class,'show']);
 Route::get('/createUser', [UserController::class,'create']);
 Route::get('/destroyUser/{id}', [UserController::class,'destroy']);
 
+
+Route::get('/brands', [BrandController::class,'index']);
+Route::get('/brands/{id}', [BrandController::class,'show']);
+Route::get('/createBrand', [BrandController::class,'create']);
+Route::get('/destroyBrand/{id}', [BrandController::class,'destroy']);
