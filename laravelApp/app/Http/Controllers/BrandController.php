@@ -83,8 +83,13 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Brand $brand)
+    public function destroy($brand_id)
     {
-        //
+        $brand= Brand::find($brand_id);
+        if(is_null($brand)){
+            return response()->json('Data not found',404);
+        }
+        $brand->delete();
+        return response()->json('Brand is deleted');
     }
 }
