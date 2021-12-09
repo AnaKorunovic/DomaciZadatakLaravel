@@ -14,7 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products=Product::all();
+        return $products;
     }
 
     /**
@@ -24,7 +25,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        Product::truncate();
+        Product::factory()->create();
     }
 
     /**
@@ -44,9 +46,13 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($product_id)
     {
-        //
+        $product=Product::find($product_id);
+        if(is_null($product)){
+            return response()->json('Data not found',404);
+        }
+        return response()->json($product);
     }
 
     /**
@@ -78,8 +84,14 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($product_id)
     {
-        //
+        $pr= Product::find($product_id);
+        if(is_null($pr)){
+            return response()->json('Data not found',404);
+        }
+        $pr->delete();
+        return response()->json('Product is deleted');
+
     }
 }

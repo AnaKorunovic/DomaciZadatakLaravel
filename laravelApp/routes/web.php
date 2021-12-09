@@ -35,3 +35,8 @@ Route::get('/brands', [BrandController::class,'index']);
 Route::get('/brands/{id}', [BrandController::class,'show']);
 Route::get('/createBrand', [BrandController::class,'create']);
 Route::get('/destroyBrand/{id}', [BrandController::class,'destroy']);
+
+Route::get('/products', [ProductController::class,'index']);
+Route::get('/products/{id}', [ProductController::class,'show']);
+Route::get('/createProduct', [ProductController::class,'create']);
+Route::get('/destroyProduct/{id}', [ProductController::class,'destroy']);
