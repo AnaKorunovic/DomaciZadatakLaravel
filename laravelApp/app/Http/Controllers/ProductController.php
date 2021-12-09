@@ -62,7 +62,7 @@ class ProductController extends Controller
             'description'=>$request->description,
             'price'=>$request->price,
             'brand_id'=>$request->brand_id,
-            'user_id'=>Auth::user()->id()
+            'user_id'=>7
         ]);
         return response()->json(['Product is created',
         new ProductResource($product)]);
