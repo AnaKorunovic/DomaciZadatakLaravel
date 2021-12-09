@@ -38,7 +38,29 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator=Validator::make($request->all(),[
+            'brand_id'=>'required',
+            
+            
+            'name'=>'required|string|max:255',
+            'slug'=>'required|string|max:100',
+            'description'=>'required|string',
+            'price'=>'required'
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors());
+        }
+        $product=Product::create([
+            'brand_id'=>$request->brand_id,
+            'user_id'=>Auth::user()->id,
+            
+            'name'=>$request->name,
+            'slug'=>$request->slug,
+            'description'=>$request->description,
+            'price'=>$request->price
+        ]);
+        return response()->json(['Product is created',
+        new ProductResource($product)]);
     }
 
     /**
@@ -72,7 +94,29 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $validator=Validator::make($request->all(),[
+            'brand_id'=>'required',
+            
+            
+            'name'=>'required|string|max:255',
+            'slug'=>'required|string|max:100',
+            'description'=>'required|string',
+            'price'=>'required'
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors());
+        }
+        
+         $product->brand_id = $request->brand_id;
+         
+        $product->name=$request->name;
+        $product->slug=$request->slug;
+        $product->description=$request->description;
+        $product->price=$request->price;
+        
+        $product->save();
+        return response()->json(['Product is updated',
+        new ProductResource($product)]);
     }
 
     /**

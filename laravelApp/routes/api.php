@@ -34,3 +34,13 @@ Route::get('/productsOfBrand/{id}', [BrandProductController::class,'index']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+Route::get('/profile', function(Request $request) {
+        return auth()->user();
+    });
+    Route::resource('products', ProductController::class)->only(['update','store','destroy']);
+
+    // API route for logout user
+    Route::post('/logout', [AuthController::class, 'logout']);
+});
