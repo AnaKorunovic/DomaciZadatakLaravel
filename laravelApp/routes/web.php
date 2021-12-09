@@ -31,12 +31,10 @@ Route::get('/categories/{id}', [CategoryController::class,'show']);
 Route::get('/createCategory',[CategoryController::class,'create']);
 Route::get('/destroyCategory/{id}', [CategoryController::class,'destroy']);
 
-Route::get('/brands', [BrandController::class,'index']);
-Route::get('/brands/{id}', [BrandController::class,'show']);
+
 Route::get('/createBrand', [BrandController::class,'create']);
 Route::get('/destroyBrand/{id}', [BrandController::class,'destroy']);
 
-Route::get('/products', [ProductController::class,'index']);
-Route::get('/products/{id}', [ProductController::class,'show']);
+
 Route::get('/createProduct', [ProductController::class,'create']);
 Route::get('/destroyProduct/{id}', [ProductController::class,'destroy']);

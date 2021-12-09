@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use App\Http\Resources\BrandResource;
 
 class BrandController extends Controller
 {
@@ -45,13 +46,9 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function show($brand_id)
+    public function show(Brand $brand)
     {
-        $brand=Brand::find($brand_id);
-        if(is_null($brand)){
-            return response()->json('Data not found',404);
-        }
-        return response()->json($brand);
+        return new BrandResource($brand);
     }
 
     /**
