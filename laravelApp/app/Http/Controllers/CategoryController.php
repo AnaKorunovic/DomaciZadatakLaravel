@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories=Category::all();
+        return $categories;
     }
 
     /**
@@ -24,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -44,9 +45,13 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($category_id)
     {
-        //
+        $cat=Category::find($category_id);
+        if(is_null($cat)){
+            return response()->json('Data not found',404);
+        }
+        return response()->json($cat);
     }
 
     /**
@@ -78,8 +83,15 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($category_id)
     {
-        //
+        $cat= Category::find($category_id);
+        if(is_null($cat)){
+            return response()->json('Data not found',404);
+        }
+        $cat->delete();
+        return response()->json('Category is deleted');
+
+        
     }
 }
