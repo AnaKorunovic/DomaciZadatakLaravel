@@ -13,7 +13,7 @@ class Product extends Model
 
     
     protected $fillable = [
-        'brand_id','name', 'slug', 'description','price','creator_id'];
+        'brand_id','name', 'slug', 'description','price','user_id'];
 
 
     public function creator()
