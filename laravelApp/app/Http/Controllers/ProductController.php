@@ -6,7 +6,12 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Resources\ProductResource;
 use App\Http\Resources\ProductCollection;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
 class ProductController extends Controller
+
 {
     /**
      * Display a listing of the resource.
@@ -39,25 +44,25 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validator=Validator::make($request->all(),[
-            'brand_id'=>'required',
-            
             
             'name'=>'required|string|max:255',
             'slug'=>'required|string|max:100',
             'description'=>'required|string',
-            'price'=>'required'
+            'price'=>'required',
+            'brand_id'=>'required'
         ]);
         if($validator->fails()){
             return response()->json($validator->errors());
         }
         $product=Product::create([
-            'brand_id'=>$request->brand_id,
-            'user_id'=>Auth::user()->id,
+            
             
             'name'=>$request->name,
             'slug'=>$request->slug,
             'description'=>$request->description,
-            'price'=>$request->price
+            'price'=>$request->price,
+            'brand_id'=>$request->brand_id,
+            'user_id'=>Auth::user()->id()
         ]);
         return response()->json(['Product is created',
         new ProductResource($product)]);

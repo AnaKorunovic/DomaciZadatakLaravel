@@ -44,3 +44,5 @@ Route::get('/profile', function(Request $request) {
     // API route for logout user
     Route::post('/logout', [AuthController::class, 'logout']);
 });
+
+Route::post('/products', [ProductController::class,'store']);//za kreiranje producta
