@@ -27,4 +27,4 @@ Route::get('/products', [ProductController::class,'index']);
 
 
 Route::resource('brands',BrandController::class);//api/brands/1
-Route::resource('products',ProductController::class);//api/products/1
+Route::resource('products',ProductController::class);//api/products/2
