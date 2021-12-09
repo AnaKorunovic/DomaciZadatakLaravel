@@ -26,6 +26,10 @@ Route::get('/users/{id}', [UserController::class,'show']);
 Route::get('/createUser', [UserController::class,'create']);
 Route::get('/destroyUser/{id}', [UserController::class,'destroy']);
 
+Route::get('/categories', [CategoryController::class,'index']);
+Route::get('/categories/{id}', [CategoryController::class,'show']);
+Route::get('/createCategory',[CategoryController::class,'create']);
+Route::get('/destroyCategory/{id}', [CategoryController::class,'destroy']);
 
 Route::get('/brands', [BrandController::class,'index']);
 Route::get('/brands/{id}', [BrandController::class,'show']);
