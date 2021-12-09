@@ -24,7 +24,7 @@ class CreateProductsTable extends Migration
             $table->text('slug'); // product slug
 
             $table->foreignId('brand_id');
-            $table->foreignId('creator_id');
+            
         });
     }
 
