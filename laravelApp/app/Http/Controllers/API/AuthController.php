@@ -13,7 +13,7 @@ class AuthController extends Controller
 {
    public function register(Request $request){
 
-    $validator=Validator::make($request->all),[
+    $validator=Validator::make($request->all(),[
         'name'=>'required|string|max:255',
         'email'=>'required|string|email|max:255|unique:users',
         'password'=>'required|string|min:8',
@@ -22,10 +22,10 @@ class AuthController extends Controller
     if($validator->fails()){
         return response()->json($validator->errors());
     }
-    $user=User::creat([
+    $user=User::create([
         'name'=>$request->name,
         'email'=>$request->email,
-        'password'=>Hash:make($request->password)
+        'password'=>Hash::make($request->password)
 
     ]);
 
@@ -35,7 +35,7 @@ class AuthController extends Controller
     ->json(['data'=>$user,'access_token'=>$token,'token_type'=>"Bearer",]);
 }
 
-public function createToken(string $ime,array $abilities=['*']){
+public function createToken(string $name,array $abilities=['*']){
 
 $token=$this->tokens()->create([
     'name'=>$name,
@@ -46,5 +46,17 @@ $token=$this->tokens()->create([
 return new NewAccessToken($token,$token->getKey().'|'.$plainTextToken);
 
 }
+
+public function login(Request $request){
+    if(!Auth::attempt($request->only('email','password'))){
+        return response()
+        ->json(['message'=>'Unauthorized'],401);
+    }
+    $user=User::where('email',$request['email'])->firstOrFail();
+    $token=$user->createToken('auth_token')->plainTextToken;
+    return response()
+    ->json(['message'=>'Hi '.$user->name.',welcome','access_token'=>$token,'token_type'=>'Bearer',]);
+}
+
 
 }

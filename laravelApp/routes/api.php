@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BrandProductController;
+use App\Http\Controllers\API\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,6 @@ Route::resource('/brands',BrandController::class);//api/brands/1
 Route::resource('/products',ProductController::class);//api/products/2
 
 Route::get('/productsOfBrand/{id}', [BrandProductController::class,'index']);
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
