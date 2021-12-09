@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Resources\ProductResource;
 
 class ProductController extends Controller
 {
@@ -46,13 +47,9 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show($product_id)
+    public function show(Product $product)
     {
-        $product=Product::find($product_id);
-        if(is_null($product)){
-            return response()->json('Data not found',404);
-        }
-        return response()->json($product);
+        return new ProductResource($product);
     }
 
     /**
