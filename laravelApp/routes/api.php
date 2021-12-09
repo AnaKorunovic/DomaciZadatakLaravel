@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BrandProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,11 +21,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/brands', [BrandController::class,'index']);
+Route::get('/brands', [BrandController::class,'index'])->name('brands.index');
 Route::get('/products', [ProductController::class,'index']);
 
 Route::post('/AddBrand', [BrandController::class,'create']);
 
-Route::resource('brands',BrandController::class);//api/brands/1
-Route::resource('products',ProductController::class);//api/products/2
+Route::resource('/brands',BrandController::class);//api/brands/1
+Route::resource('/products',ProductController::class);//api/products/2
 
+Route::get('/productsOfBrand/{id}', [BrandProductController::class,'index']);
