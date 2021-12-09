@@ -21,10 +21,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/brands', [BrandController::class,'index']);
-
-
 Route::get('/products', [ProductController::class,'index']);
 
+Route::post('/AddBrand', [BrandController::class,'create']);
 
 Route::resource('brands',BrandController::class);//api/brands/1
 Route::resource('products',ProductController::class);//api/products/2
+

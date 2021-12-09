@@ -32,7 +32,7 @@ Route::get('/createCategory',[CategoryController::class,'create']);
 Route::get('/destroyCategory/{id}', [CategoryController::class,'destroy']);
 
 
-Route::get('/createBrand', [BrandController::class,'create']);
+//Route::get('/createBrand', [BrandController::class,'create']);
 Route::get('/destroyBrand/{id}', [BrandController::class,'destroy']);
 
 

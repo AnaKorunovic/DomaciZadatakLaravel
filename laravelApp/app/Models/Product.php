@@ -16,15 +16,15 @@ class Product extends Model
         'brand_id','name', 'slug', 'description','price','user_id'];
 
 
-    public function creator()
+    public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class,'user_id');
     }
 
     
     public function brand()
     {
-        return $this->belongsTo(Brand::class,'brend_id');
+        return $this->belongsTo(Brand::class,'brand_id');
     }
 
      
