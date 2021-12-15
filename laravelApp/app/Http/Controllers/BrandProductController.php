@@ -7,7 +7,7 @@ use App\Models\Product;
 
 class BrandProductController extends Controller
 {
-    //svi producti koji bripadaju odredjenom brendu
+    //svi producti koji pripadaju odredjenom brendu
     public function index($brand_id)
     {
         $products=Product::get()->where('brand_id',$brand_id);
