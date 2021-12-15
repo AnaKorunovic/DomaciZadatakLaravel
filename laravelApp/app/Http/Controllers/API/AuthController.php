@@ -58,5 +58,11 @@ public function login(Request $request){
     ->json(['message'=>'Hi '.$user->name.',welcome','access_token'=>$token,'token_type'=>'Bearer',]);
 }
 
+public function logout(){
+    auth()->user()->tokens()->delete();
+    return [
 
+        'message'=>"You have successfully logged out and token was deleted."
+    ];
+}
 }
